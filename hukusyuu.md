@@ -270,3 +270,89 @@ buildメソッド..ウィジェットを生成するときに呼び出される�
 
 **P51のサンプルコードを改めて確認**
 
+#### Flutter Studio
+ブラウザ上でFlutterのUIを作れる便利なサイト　→　[FlutterStudio](https://flutterstudio.app/)
+
+**TextStyle**..テキストのスタイルを指定するために用意されているクラス。様々な調整が可能。以下のコードはP78より
+``` c
+Text (
+  "Hello Flutter!",
+  style: TextStyle(
+    fontSize:32.0,
+    color: const Color(0xff000000),
+    fontWeight: FontWeight.w700,
+    fontFamily: "Roboto"
+  ),
+),
+```
+- FontSize...文字のサイズ
+- fontFamily...フォント
+- fontWeight...文字の太さ。w100～w900、あるいはboldという定数で指定。
+
+**Color**...色を指定するクラス（Textstyle以外でもよく使う）  
+Color(0x  00  00  00  00)  
+　　　　| A | R | G | B |　　←16進数で各値が設定されている  
+Color(0xffff0304)　←→　Color.fromARGB(255, 255, 3, 4)  
+　　　　　　同じ色で設定される
+
+Center...childで指定したWidgetを上下中央揃えで表示する。画面サイズを変えても常に中央揃えになる。
+``` c
+Widget build(BuildContext context) {
+  return Scaffold(
+    appBar: AppBar(
+      title: Text('App Name'),
+    ),
+    body:
+    Center(
+      child:
+      Text(
+        "Hello Flutter!",
+        style: TextStyle(fontSize:32.0,
+          color: const Color(0xff000000),
+          fontWeight: FontWeight.w700,
+          fontFamily: "Roboto"),
+      ),
+    ),
+  );
+}
+```
+
+**Container**...Centerよりも細かく位置の調整をする場合に使用。  
+- EdgeInsets...周囲の余白幅を設定するためのクラス
+  - 個別に設定　EdgeInsets.fromLTRB(左,上,右,下)...それぞれの余白幅を数値で指定
+  - シンメトリック　const EdgeInsets.symmetric（横,縦)...横（左右）と縦（上下）にそれぞれ同じ値を設定します。　　
+- Alignment...配置場所を設定するためのクラス
+
+P87～89をよく読んでおく。
+``` c
+Container(
+  child:
+  Text(
+    "Hello Flutter!",
+    style: TextStyle(fontSize:32.0,
+      color: const Color(0xff000000),
+      fontWeight: FontWeight.w700,
+      fontFamily: "Roboto"),
+  ),
+  padding: const EdgeInsets.all(10.0),
+  alignment: Alignment.bottomCenter,
+),
+```
+
+**Column**...複数のウィジェット縦に並べて表示する。P90～P95をよく確認。
+``` c
+Column(
+  mainAxisAlignment: MainAxisAlignment.start,
+  mainAxisSize: MainAxisSize.max,
+  crossAxisAlignment: CrossAxisAlignment.center,
+  children: <Widget>[
+    Text(略),
+    Text(略),
+    Text(略)
+  ]
+),
+```
+- **mainAxisAlignment: MainAxisAlignment.start,**　上下の位置（column）
+- **crossAxisAlignment: CrossAxisAlignment.center**　左右の位置(Row)
+
+## Chapter3
